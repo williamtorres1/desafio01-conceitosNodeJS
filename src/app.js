@@ -10,13 +10,13 @@ app.use(cors());
 const repositories = [];
 
 app.get("/repositories", (request, response) => {
-  return response.status(200).json(repositories)
+  return response.json(repositories)
 });
 
 app.post("/repositories", (request, response) => {
   const { title, url, techs, likes } = request.body
 
-  const repository = { id: uuid(), title, url, techs, likes}
+  const repository = { id: uuid(), title, url, techs, likes: 0}
 
   repositories.push(repository)
 
@@ -34,8 +34,8 @@ app.put("/repositories/:id", (request, response) => {
   }
 
   const repository = {
-    title,
     url,
+    title,
     techs,
     likes
   }
